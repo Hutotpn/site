@@ -20,22 +20,29 @@ import Layout from "../layouts/Layout.astro";
     </div>
   </nav>
 
-  <div class="mt-40 text-neutral-900 font-serif flex flex-col justify-between">
+  <div
+    class="mt-40 text-neutral-900 dark:text-neutral-100 font-serif flex flex-col justify-between"
+  >
     <!-- Header -->
     <header class="border-b border-neutral-800 py-2">
       <div class="max-w-5xl mx-auto flex justify-between items-center px-4">
         <h1 class="text-4xl font-medium tracking-wide">Hi, I'm Huto</h1>
-        <p class="text-sm italic text-neutral-600" id="greetings">
+        <p
+          class="text-sm italic text-neutral-600 dark:text-neutral-400"
+          id="greetings"
+        >
           oh hi, how are you doing?
         </p>
       </div>
     </header>
 
-    <!-- Spacer or content area -->
-    <main class="flex-grow"></main>
+    <!-- Content area -->
+    <main class="max-w-5xl ml-22 font-medium text-3xl py-8">
+      <h1 class="">About me</h1>
+    </main>
 
     <!-- Footer -->
-    <footer class="border-t border-neutral-400 py-4 text-center text-sm">
+    <footer class="border-t border-neutral-800 py-4 text-center text-sm">
       <div class="max-w-5xl mx-auto flex justify-between items-center px-4">
         <span
           ><span id="month"></span>-<span id="day"></span>-<span id="year"
