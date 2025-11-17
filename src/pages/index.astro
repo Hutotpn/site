@@ -13,11 +13,9 @@ import Layout from "../layouts/Layout.astro";
 
     <!-- Desktop Menu -->
     <div
-      class="hidden sm:flex items-center gap-6 text-neutral-700 dark:text-neutral-300"
+      class="hidden sm:flex items-center gap-6 text-neutral-800 dark:text-neutral-200"
     >
-      <a href="#" class="font-medium text-neutral-800 dark:text-neutral-200"
-        >Home</a
-      >
+      <a href="#" class="font-medium">Home</a>
       <a href="/projects">Projects</a>
       <a href="/contact">Contact</a>
     </div>
@@ -28,7 +26,12 @@ import Layout from "../layouts/Layout.astro";
         <img
           src="https://icons.hackclub.com/api/icons/dark/menu"
           alt="Menu"
-          class="w-8 h-8"
+          class="w-8 h-8 dark:hidden"
+        />
+        <img
+          src="https://icons.hackclub.com/api/icons/snow/menu"
+          alt="Menu"
+          class="w-8 h-8 hidden dark:flex"
         />
       </button>
     </div>
@@ -37,7 +40,7 @@ import Layout from "../layouts/Layout.astro";
   <!-- Mobile Dropdown -->
   <div
     id="mobile-menu"
-    class="sm:hidden hidden absolute top-24 left-1/2 w-[90%] max-w-5xl -translate-x-1/2 rounded-2xl border border-white/40 bg-white/70 dark:bg-neutral-900/70 backdrop-blur-md shadow-lg p-6 flex flex-col gap-4 text-neutral-800 dark:text-neutral-200"
+    class="sm:hidden hidden absolute top-24 left-1/2 w-[90%] max-w-5xl mt-2 border-neutral-800/40 -translate-x-1/2 rounded-2xl border border-white/40 bg-white/70 dark:bg-neutral-900/70 backdrop-blur-md shadow-lg p-6 flex flex-col gap-4 text-neutral-800 dark:text-neutral-200"
   >
     <a href="#" class="font-medium">Home</a>
     <a href="/projects">Projects</a>
