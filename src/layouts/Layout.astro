@@ -13,9 +13,45 @@ import "@fontsource-variable/lexend-deca";
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
     <title>Huto</title>
+
+    {/* ===== Google Analytics Script Block ===== */}
+    {
+      import.meta.env.PROD && (
+        <>
+          <script
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id=${import.meta.env.PUBLIC_GA_ID}`}
+          />
+          <script
+            is:inline
+            define:vars={{
+              gaId: import.meta.env.PUBLIC_GA_ID,
+            }}
+          >
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+              dataLayer.push(arguments);
+            }
+            gtag("js", new Date());
+            gtag("config", gaId);
+          </script>
+        </>
+      )
+    }
+    {/* ======================================= */}
   </head>
   <body class="dark:bg-neutral-900">
     <slot />
+    <script is:inline>
+      document.addEventListener('astro:after-swap', () => {
+        if (typeof gtag === 'function' && typeof import.meta.env.PUBLIC_GA_ID !== 'undefined') {
+          gtag('event', 'page_view', {
+          page_path: location.pathname,
+          page_location: location.href,
+        });
+      }
+  });
+</script>
   </body>
 </html>
 
