@@ -1,0 +1,185 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+  <nav
+    class="fixed top-6 left-1/2 flex w-[90%] max-w-5xl -translate-x-1/2 items-center justify-between rounded-full border border-white/40 bg-white/30 px-8 py-4 shadow-lg backdrop-blur-md dark:border-neutral-700/40 dark:bg-neutral-900/30"
+  >
+    <!-- Logo -->
+    <div class="font-semibold text-lg text-neutral-800 dark:text-neutral-200">
+      Huto
+    </div>
+
+    <!-- Desktop Menu -->
+    <div
+      class="hidden sm:flex items-center gap-6 text-neutral-800 dark:text-neutral-200"
+    >
+      <a href="/" class="font-medium">Home</a>
+      <a href="/projects">Projects</a>
+      <a href="https://hcb.hackclub.com/donations/start/hackline">Donate</a>
+    </div>
+
+    <!-- Mobile Menu Button -->
+    <div class="sm:hidden">
+      <button id="menu-btn">
+        <img
+          src="https://icons.hackclub.com/api/icons/dark/menu"
+          alt="Menu"
+          class="w-8 h-8 dark:hidden"
+        />
+        <img
+          src="https://icons.hackclub.com/api/icons/snow/menu"
+          alt="Menu"
+          class="w-8 h-8 hidden dark:flex"
+        />
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Dropdown -->
+  <div
+    id="mobile-menu"
+    class="sm:hidden absolute top-24 left-1/2 w-[90%] max-w-5xl mt-2 -translate-x-1/2 rounded-2xl border border-white/40 bg-white/70 dark:border-neutral-800/40 dark:bg-neutral-900/70 backdrop-blur-md shadow-lg p-6 flex flex-col gap-4 text-neutral-800 dark:text-neutral-200 opacity-0 pointer-events-none transform -translate-y-4 transition-all duration-300 ease-in-out"
+  >
+    <a href="#" class="font-medium">Home</a>
+    <a href="/projects">Projects</a>
+    <a href="https://hcb.hackclub.com/donations/start/hackline">Donate</a>
+  </div>
+
+  <div
+    class="mt-40 text-neutral-900 dark:text-neutral-100 flex flex-col justify-between"
+  >
+    <!-- Header -->
+    <header class="border-b border-neutral-800 py-2">
+      <div class="max-w-5xl mx-auto flex justify-between items-center ml-[10%]">
+        <h1 class="text-4xl font-medium tracking-wide font-display">
+          Projects
+        </h1>
+      </div>
+    </header>
+
+    <!-- Content area -->
+    <main class="max-w-5xl ml-[10%] py-8 mr-4">
+      <section id="projects" class="mb-8">
+        <div
+          class="w-120 h-60 border-2 border-neutral-600/40 rounded-2xl hover:shadow-lg transition-shadow duration-300"
+        >
+          <h1 class="ml-6 mt-4 text-2xl font-bold font-display">Hack Line</h1>
+          <p class="ml-6 mt-2 mr-4">
+            Hack Line is a real, working phone network where every clubber gets
+            their own extension and can call anyone else in the network —
+            instantly, for free.
+          </p>
+          <a
+            href="https://hackline.hutotpn.com"
+            class="text-blue-700 ml-6 dark:text-blue-400 hover:underline"
+            >Website</a
+          >
+          <a
+            href="https://hcb.hackclub.com/donations/start/hackline"
+            class="text-blue-700 dark:text-blue-400 ml-4 hover:underline"
+            >Donate</a
+          >
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-neutral-800 py-4 text-center text-sm">
+      <div class="max-w-5xl mx-auto flex justify-between items-center px-4">
+        <span
+          ><span id="month"></span>-<span id="day"></span>-<span id="year"
+          ></span></span
+        >
+      </div>
+      <p class="text-neutral-600 mt-2">
+        © <span id="copyright-year"></span> Huto
+      </p>
+    </footer>
+  </div>
+
+  <script>
+    const yearEl = document.getElementById("year");
+    if (yearEl) {
+      yearEl.textContent = new Date().getFullYear().toString();
+    }
+
+    const copyrightYearEl = document.getElementById("copyright-year");
+    if (copyrightYearEl) {
+      copyrightYearEl.textContent = new Date().getFullYear().toString();
+    }
+
+    const monthEl = document.getElementById("month");
+    if (monthEl) {
+      monthEl.textContent = String(new Date().getMonth() + 1).padStart(2, "0");
+    }
+
+    const dayEl = document.getElementById("day");
+    if (dayEl) {
+      dayEl.textContent = String(new Date().getDate()).padStart(2, "0");
+    }
+
+    const quoteEl = document.getElementById("quote");
+    const quoteYearEl = document.getElementById("quoteYear");
+
+    const fetchQuote = async () => {
+      try {
+        const res = await fetch("https://quotes.api.hutotpn.com", {
+          method: "GET",
+        });
+
+        if (!res.ok) {
+          throw new Error(`HTTP ${res.status}`);
+        }
+
+        const data = await res.json();
+
+        if (quoteEl) quoteEl.textContent = `“${data.quote}”`;
+        if (quoteYearEl) quoteYearEl.textContent = data.year || "Unknown Year";
+      } catch (error) {
+        if (quoteEl) quoteEl.textContent = `Failed to load quote: ${error}`;
+        if (quoteYearEl) quoteYearEl.textContent = "idk";
+      }
+    };
+
+    fetchQuote();
+
+    const btn = document.getElementById("menu-btn") as HTMLButtonElement | null;
+    const menu = document.getElementById(
+      "mobile-menu"
+    ) as HTMLDivElement | null;
+
+    if (btn && menu) {
+      btn.addEventListener("click", () => {
+        const isOpen = menu.classList.contains("opacity-100");
+
+        if (isOpen) {
+          // Close menu
+          menu.classList.remove(
+            "opacity-100",
+            "translate-y-0",
+            "pointer-events-auto"
+          );
+          menu.classList.add(
+            "opacity-0",
+            "-translate-y-4",
+            "pointer-events-none"
+          );
+        } else {
+          // Open menu
+          menu.classList.remove(
+            "opacity-0",
+            "-translate-y-4",
+            "pointer-events-none"
+          );
+          menu.classList.add(
+            "opacity-100",
+            "translate-y-0",
+            "pointer-events-auto"
+          );
+        }
+      });
+    }
+  </script>
+</Layout>
