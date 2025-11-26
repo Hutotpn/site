@@ -7,16 +7,19 @@ import Layout from "../layouts/Layout.astro";
     class="fixed top-6 left-1/2 flex w-[90%] max-w-5xl -translate-x-1/2 items-center justify-between rounded-full border border-white/40 bg-white/30 px-8 py-4 shadow-lg backdrop-blur-md dark:border-neutral-700/40 dark:bg-neutral-900/30"
   >
     <!-- Logo -->
-    <div class="font-semibold text-lg text-neutral-800 dark:text-neutral-200">
+    <a
+      class="font-semibold text-lg text-neutral-800 dark:text-neutral-200"
+      href="/"
+    >
       Huto
-    </div>
+    </a>
 
     <!-- Desktop Menu -->
     <div
       class="hidden sm:flex items-center gap-6 text-neutral-800 dark:text-neutral-200"
     >
-      <a href="/" class="font-medium">Home</a>
-      <a href="/projects">Projects</a>
+      <a href="/">Home</a>
+      <a href="/projects" class="font-medium">Projects</a>
       <a href="https://hcb.hackclub.com/donations/start/hackline">Donate</a>
     </div>
 
@@ -42,8 +45,8 @@ import Layout from "../layouts/Layout.astro";
     id="mobile-menu"
     class="sm:hidden absolute top-24 left-1/2 w-[90%] max-w-5xl mt-2 -translate-x-1/2 rounded-2xl border border-white/40 bg-white/70 dark:border-neutral-800/40 dark:bg-neutral-900/70 backdrop-blur-md shadow-lg p-6 flex flex-col gap-4 text-neutral-800 dark:text-neutral-200 opacity-0 pointer-events-none transform -translate-y-4 transition-all duration-300 ease-in-out"
   >
-    <a href="#" class="font-medium">Home</a>
-    <a href="/projects">Projects</a>
+    <a href="/">Home</a>
+    <a href="/projects" class="font-medium">Projects</a>
     <a href="https://hcb.hackclub.com/donations/start/hackline">Donate</a>
   </div>
 
@@ -119,31 +122,6 @@ import Layout from "../layouts/Layout.astro";
     if (dayEl) {
       dayEl.textContent = String(new Date().getDate()).padStart(2, "0");
     }
-
-    const quoteEl = document.getElementById("quote");
-    const quoteYearEl = document.getElementById("quoteYear");
-
-    const fetchQuote = async () => {
-      try {
-        const res = await fetch("https://quotes.api.hutotpn.com", {
-          method: "GET",
-        });
-
-        if (!res.ok) {
-          throw new Error(`HTTP ${res.status}`);
-        }
-
-        const data = await res.json();
-
-        if (quoteEl) quoteEl.textContent = `“${data.quote}”`;
-        if (quoteYearEl) quoteYearEl.textContent = data.year || "Unknown Year";
-      } catch (error) {
-        if (quoteEl) quoteEl.textContent = `Failed to load quote: ${error}`;
-        if (quoteYearEl) quoteYearEl.textContent = "idk";
-      }
-    };
-
-    fetchQuote();
 
     const btn = document.getElementById("menu-btn") as HTMLButtonElement | null;
     const menu = document.getElementById(
