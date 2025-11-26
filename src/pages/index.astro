@@ -73,7 +73,8 @@ import Layout from "../layouts/Layout.astro";
           Featured Projects
         </h1>
         <div
-          class="w-120 h-60 border-2 border-neutral-600/40 rounded-2xl hover:shadow-lg transition-shadow duration-300"
+          id="project"
+          class="w-xs h-auto border-2 border-neutral-600/40 rounded-2xl sm:w-120 sm:h-60 hover:shadow-lg transition-shadow duration-300"
         >
           <h1 class="ml-6 mt-4 text-2xl font-bold font-display">Hack Line</h1>
           <p class="ml-6 my-2 mr-4">
@@ -91,6 +92,7 @@ import Layout from "../layouts/Layout.astro";
             class="text-blue-700 dark:text-blue-400 ml-4 hover:underline"
             >Donate</a
           >
+          <div class="mb-4"></div>
         </div>
       </section>
       <section id="contact" class="mt-8">
@@ -117,140 +119,27 @@ import Layout from "../layouts/Layout.astro";
         <p id="quote" class="text-xl font-serif mb-4">loading...</p>
         <p class="ml-2">— Huto, <span id="quoteYear"></span></p>
       </section>
-
-      <!-- Footer -->
-      <footer class="border-t border-neutral-800 py-4 text-center text-sm">
-        <div class="max-w-5xl mx-auto flex justify-between items-center px-4">
-          <span
-            ><span id="month"></span>-<span id="day"></span>-<span id="year"
-            ></span></span
-          >
-        </div>
-        <p class="text-neutral-600 mt-2">
-          © <span id="copyright-year"></span> Huto
-        </p>
-      </footer>
     </main>
 
-    <script>
-      const yearEl = document.getElementById("year");
-      if (yearEl) {
-        yearEl.textContent = new Date().getFullYear().toString();
-      }
-
-      const copyrightYearEl = document.getElementById("copyright-year");
-      if (copyrightYearEl) {
-        copyrightYearEl.textContent = new Date().getFullYear().toString();
-      }
-
-      const monthEl = document.getElementById("month");
-      if (monthEl) {
-        monthEl.textContent = String(new Date().getMonth() + 1).padStart(
-          2,
-          "0"
-        );
-      }
-
-      const dayEl = document.getElementById("day");
-      if (dayEl) {
-        dayEl.textContent = String(new Date().getDate()).padStart(2, "0");
-      }
-
-      const quoteEl = document.getElementById("quote");
-      const quoteYearEl = document.getElementById("quoteYear");
-
-      const fetchQuote = async () => {
-        try {
-          const res = await fetch("https://quotes.api.hutotpn.com", {
-            method: "GET",
-          });
-
-          if (!res.ok) {
-            throw new Error(`HTTP ${res.status}`);
-          }
-
-          const data = await res.json();
-
-          if (quoteEl) quoteEl.textContent = `“${data.quote}”`;
-          if (quoteYearEl)
-            quoteYearEl.textContent = data.year || "Unknown Year";
-        } catch (error) {
-          if (quoteEl) quoteEl.textContent = `Failed to load quote: ${error}`;
-          if (quoteYearEl) quoteYearEl.textContent = "idk";
-        }
-      };
-
-      fetchQuote();
-
-      const btn = document.getElementById(
-        "menu-btn"
-      ) as HTMLButtonElement | null;
-      const menu = document.getElementById(
-        "mobile-menu"
-      ) as HTMLDivElement | null;
-
-      if (btn && menu) {
-        btn.addEventListener("click", () => {
-          const isOpen = menu.classList.contains("opacity-100");
-
-          if (isOpen) {
-            // Close menu
-            menu.classList.remove(
-              "opacity-100",
-              "translate-y-0",
-              "pointer-events-auto"
-            );
-            menu.classList.add(
-              "opacity-0",
-              "-translate-y-4",
-              "pointer-events-none"
-            );
-          } else {
-            // Open menu
-            menu.classList.remove(
-              "opacity-0",
-              "-translate-y-4",
-              "pointer-events-none"
-            );
-            menu.classList.add(
-              "opacity-100",
-              "translate-y-0",
-              "pointer-events-auto"
-            );
-          }
-        });
-      }
-
-      document.getElementById("contactVia")?.addEventListener("change", (e) => {
-        const target = e.target as HTMLSelectElement;
-        const contactMe = document.getElementById(
-          "contactMe"
-        ) as HTMLAnchorElement;
-
-        switch (target.value) {
-          case "email":
-            contactMe.textContent = "hutotpn@hutotpn.com";
-            contactMe.href = "mailto:hutotpn@hutotpn.com";
-            break;
-          case "slack":
-            contactMe.textContent = "@Huto";
-            contactMe.href =
-              "https://hackclub.enterprise.slack.com/team/U09PQ98JE12";
-            break;
-          case "discord":
-            contactMe.textContent = "@hutotpn";
-            contactMe.href =
-              "javascript:alert('My Discord username is \"hutotpn\"!')";
-            break;
-          case "github":
-            contactMe.textContent = "@Hutotpn";
-            contactMe.href = "https://github.com/Hutotpn";
-            break;
-          default:
-            contactMe.textContent = "";
-            contactMe.href = "#";
-        }
-      });
-    </script>
+    <!-- Footer -->
+    <footer class="border-t border-neutral-800 py-4 text-center text-sm">
+      <div class="max-w-5xl mx-auto flex justify-between items-center px-4">
+        <span
+          ><span id="month"></span>-<span id="day"></span>-<span id="year"
+          ></span></span
+        >
+      </div>
+      <p class="text-neutral-600 mt-2">
+        © <span id="copyright-year"></span> Huto
+      </p>
+    </footer>
   </div>
+
+  <script src="/src/scripts/date.js"></script>
+  <script src="/src/scripts/quote.js"></script>
+  <script src="/src/scripts/menu.ts"></script>
+
+  <script>
+    fetchQuote();
+  </script>
 </Layout>
