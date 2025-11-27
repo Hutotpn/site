@@ -80,6 +80,11 @@ import Layout from "../layouts/Layout.astro";
             >Website</a
           >
           <a
+            href="https://hackclub.enterprise.slack.com/archives/C09TXM4REMD"
+            class="text-blue-700 ml-6 dark:text-blue-400 hover:underline"
+            >Slack</a
+          >
+          <a
             href="https://hcb.hackclub.com/donations/start/hackline"
             class="text-blue-700 dark:text-blue-400 ml-4 hover:underline"
             >Donate</a
@@ -102,62 +107,6 @@ import Layout from "../layouts/Layout.astro";
     </footer>
   </div>
 
-  <script>
-    const yearEl = document.getElementById("year");
-    if (yearEl) {
-      yearEl.textContent = new Date().getFullYear().toString();
-    }
-
-    const copyrightYearEl = document.getElementById("copyright-year");
-    if (copyrightYearEl) {
-      copyrightYearEl.textContent = new Date().getFullYear().toString();
-    }
-
-    const monthEl = document.getElementById("month");
-    if (monthEl) {
-      monthEl.textContent = String(new Date().getMonth() + 1).padStart(2, "0");
-    }
-
-    const dayEl = document.getElementById("day");
-    if (dayEl) {
-      dayEl.textContent = String(new Date().getDate()).padStart(2, "0");
-    }
-
-    const btn = document.getElementById("menu-btn") as HTMLButtonElement | null;
-    const menu = document.getElementById(
-      "mobile-menu"
-    ) as HTMLDivElement | null;
-
-    if (btn && menu) {
-      btn.addEventListener("click", () => {
-        const isOpen = menu.classList.contains("opacity-100");
-
-        if (isOpen) {
-          // Close menu
-          menu.classList.remove(
-            "opacity-100",
-            "translate-y-0",
-            "pointer-events-auto"
-          );
-          menu.classList.add(
-            "opacity-0",
-            "-translate-y-4",
-            "pointer-events-none"
-          );
-        } else {
-          // Open menu
-          menu.classList.remove(
-            "opacity-0",
-            "-translate-y-4",
-            "pointer-events-none"
-          );
-          menu.classList.add(
-            "opacity-100",
-            "translate-y-0",
-            "pointer-events-auto"
-          );
-        }
-      });
-    }
-  </script>
+  <script src="/script/date.js"></script>
+  <script src="/script/menu.js"></script>
 </Layout>
