@@ -1,5 +1,5 @@
-const btn = document.getElementById("menu-btn") as HTMLButtonElement | null;
-const menu = document.getElementById("mobile-menu") as HTMLDivElement | null;
+const btn = document.getElementById("menu-btn");
+const menu = document.getElementById("mobile-menu");
 
 if (btn && menu) {
   btn.addEventListener("click", () => {

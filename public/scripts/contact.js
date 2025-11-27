@@ -1,6 +1,6 @@
 document.getElementById("contactVia")?.addEventListener("change", (e) => {
-  const target = e.target as HTMLSelectElement;
-  const contactMe = document.getElementById("contactMe") as HTMLAnchorElement;
+  const target = e.target;
+  const contactMe = document.getElementById("contactMe");
 
   switch (target.value) {
     case "email":
