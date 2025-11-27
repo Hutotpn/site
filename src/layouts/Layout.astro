@@ -46,19 +46,9 @@ import "@fontsource-variable/lexend-deca";
     <!-- End Google Tag Manager (noscript) -->
 
     <slot />
-    <script is:inline>
-      document.addEventListener("astro:after-swap", () => {
-        if (
-          typeof gtag === "function" &&
-          typeof import.meta.env.PUBLIC_GA_ID !== "undefined"
-        ) {
-          gtag("event", "page_view", {
-            page_path: location.pathname,
-            page_location: location.href,
-          });
-        }
-      });
-    </script>
+
+    <script src="/scripts/date.js"></script>
+    <script src="/scripts/menu.js" is:inline></script>
   </body>
 </html>
 
