@@ -14,44 +14,51 @@ import "@fontsource-variable/lexend-deca";
     <meta name="generator" content={Astro.generator} />
     <title>Huto</title>
 
-    {/* ===== Google Analytics Script Block ===== */}
-    {
-      import.meta.env.PROD && (
-        <>
-          <script
-            async
-            src={`https://www.googletagmanager.com/gtag/js?id=${import.meta.env.PUBLIC_GA_ID}`}
-          />
-          <script
-            is:inline
-            define:vars={{
-              gaId: import.meta.env.PUBLIC_GA_ID,
-            }}
-          >
-            window.dataLayer = window.dataLayer || [];
-            function gtag() {
-              dataLayer.push(arguments);
-            }
-            gtag("js", new Date());
-            gtag("config", gaId);
-          </script>
-        </>
-      )
-    }
-    {/* ======================================= */}
+    <!-- Google Tag Manager -->
+    <script is:raw>
+      (function (w, d, s, l, i) {
+        (w as any)[l] = (w as any)[l] || [];
+        (w as any)[l].push({
+          "gtm.start": new Date().getTime(),
+          event: "gtm.js",
+        });
+
+        const f = d.getElementsByTagName(s)[0];
+        const j = d.createElement(s);
+        const dl = l !== "dataLayer" ? "&l=" + l : "";
+
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode!.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-5ZRH7T85");
+    </script>
+    <!-- End Google Tag Manager -->
   </head>
   <body class="dark:bg-neutral-900">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-5ZRH7T85"
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"></iframe></noscript
+    >
+    <!-- End Google Tag Manager (noscript) -->
+
     <slot />
     <script is:inline>
-      document.addEventListener('astro:after-swap', () => {
-        if (typeof gtag === 'function' && typeof import.meta.env.PUBLIC_GA_ID !== 'undefined') {
-          gtag('event', 'page_view', {
-          page_path: location.pathname,
-          page_location: location.href,
-        });
-      }
-  });
-</script>
+      document.addEventListener("astro:after-swap", () => {
+        if (
+          typeof gtag === "function" &&
+          typeof import.meta.env.PUBLIC_GA_ID !== "undefined"
+        ) {
+          gtag("event", "page_view", {
+            page_path: location.pathname,
+            page_location: location.href,
+          });
+        }
+      });
+    </script>
   </body>
 </html>
 
