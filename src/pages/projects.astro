@@ -7,19 +7,19 @@ import Layout from "../layouts/Layout.astro";
     class="fixed top-6 left-1/2 flex w-[90%] max-w-5xl -translate-x-1/2 items-center justify-between rounded-full border border-white/40 bg-white/30 px-8 py-4 shadow-lg backdrop-blur-md dark:border-neutral-700/40 dark:bg-neutral-900/30"
   >
     <!-- Logo -->
-    <a
-      class="font-semibold text-lg text-neutral-800 dark:text-neutral-200"
-      href="/"
+    <div
+      class="font-display font-semibold text-lg text-neutral-800 dark:text-neutral-200"
     >
       Huto
-    </a>
+    </div>
 
     <!-- Desktop Menu -->
     <div
       class="hidden sm:flex items-center gap-6 text-neutral-800 dark:text-neutral-200"
     >
-      <a href="/">Home</a>
-      <a href="/projects" class="font-medium">Projects</a>
+      <a href="/" class="font-medium">Home</a>
+      <a href="/about">About</a>
+      <a href="/projects">Projects</a>
       <a href="https://hcb.hackclub.com/donations/start/hackline">Donate</a>
     </div>
 
@@ -45,8 +45,9 @@ import Layout from "../layouts/Layout.astro";
     id="mobile-menu"
     class="sm:hidden absolute top-24 left-1/2 w-[90%] max-w-5xl mt-2 -translate-x-1/2 rounded-2xl border border-white/40 bg-white/70 dark:border-neutral-800/40 dark:bg-neutral-900/70 backdrop-blur-md shadow-lg p-6 flex flex-col gap-4 text-neutral-800 dark:text-neutral-200 opacity-0 pointer-events-none transform -translate-y-4 transition-all duration-300 ease-in-out"
   >
-    <a href="/">Home</a>
-    <a href="/projects" class="font-medium">Projects</a>
+    <a href="/" class="font-medium">Home</a>
+    <a href="/about">About</a>
+    <a href="/projects">Projects</a>
     <a href="https://hcb.hackclub.com/donations/start/hackline">Donate</a>
   </div>
 
@@ -54,21 +55,27 @@ import Layout from "../layouts/Layout.astro";
     class="mt-40 text-neutral-900 dark:text-neutral-100 flex flex-col justify-between"
   >
     <!-- Header -->
-    <header class="border-b border-neutral-800 py-2">
+    <header class="border-b border-neutral-800 dark:border-neutral-600 py-2">
       <div class="max-w-5xl mx-auto flex justify-between items-center ml-[10%]">
         <h1 class="text-4xl font-medium tracking-wide font-display">
-          Projects
+          Hi, I'm <span class="text-teal-800 dark:text-violet-300">Huto</span>
         </h1>
       </div>
     </header>
 
     <!-- Content area -->
-    <main class="max-w-5xl ml-[10%] py-8 mr-4">
-      <section id="projects" class="mb-8">
+    <main class="max-w-5xl ml-[10%] mr-[10%] py-8">
+      <section id="projects" class="mt-8">
+        <h1 class="font-medium text-3xl mb-4 font-display">Projects</h1>
         <div
-          class="w-120 h-60 border-2 border-neutral-600/40 rounded-2xl hover:shadow-lg transition-shadow duration-300"
+          id="project"
+          class="w-auto h-auto border-2 border-neutral-600/40 rounded-2xl sm:w-120 sm:h-60 hover:shadow-lg transition-shadow duration-300 bg-red-50 dark:bg-red-950"
         >
-          <h1 class="ml-6 mt-4 text-2xl font-bold font-display">Hack Line</h1>
+          <h1
+            class="ml-6 mt-4 text-2xl font-bold font-display text-red-950 dark:text-red-100"
+          >
+            Hack Line
+          </h1>
           <p class="ml-6 my-2 mr-4">
             Hack Line is a real, working phone network where every clubber gets
             their own extension and can call anyone else in the network —
@@ -81,7 +88,7 @@ import Layout from "../layouts/Layout.astro";
           >
           <a
             href="https://hackclub.enterprise.slack.com/archives/C09TXM4REMD"
-            class="text-blue-700 ml-6 dark:text-blue-400 hover:underline"
+            class="text-blue-700 dark:text-blue-400 ml-4 hover:underline"
             >Slack</a
           >
           <a
@@ -89,6 +96,25 @@ import Layout from "../layouts/Layout.astro";
             class="text-blue-700 dark:text-blue-400 ml-4 hover:underline"
             >Donate</a
           >
+          <div class="mb-4"></div>
+        </div>
+        <div class="mb-4"></div>
+        <div
+          id="project"
+          class="w-auto h-auto border-2 border-neutral-600/40 rounded-2xl sm:w-120 sm:h-60 hover:shadow-lg transition-shadow duration-300 bg-sky-50 dark:bg-sky-950"
+        >
+          <h1
+            class="ml-6 mt-4 text-5xl font-cookie text-sky-950 dark:text-sky-100"
+          >
+            Seachair
+          </h1>
+          <p class="ml-6 my-2 mr-4">An alternative to Airtable</p>
+          <a
+            href="https://hackclub.enterprise.slack.com/archives/C0A2QUBFZMG"
+            class="text-blue-700 ml-6 dark:text-blue-400 hover:underline"
+            >Slack</a
+          >
+          <div class="mb-4"></div>
         </div>
       </section>
     </main>
