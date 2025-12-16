@@ -16,6 +16,7 @@ import Layout from "../layouts/Layout.astro";
       class="hidden sm:flex items-center gap-6 text-neutral-800 dark:text-neutral-200"
     >
       <a href="/" class="font-medium">Home</a>
+      <a href="/about">About</a>
       <a href="/projects">Projects</a>
       <a href="https://hcb.hackclub.com/donations/start/hackline">Donate</a>
     </div>
@@ -43,6 +44,7 @@ import Layout from "../layouts/Layout.astro";
     class="sm:hidden absolute top-24 left-1/2 w-[90%] max-w-5xl mt-2 -translate-x-1/2 rounded-2xl border border-white/40 bg-white/70 dark:border-neutral-800/40 dark:bg-neutral-900/70 backdrop-blur-md shadow-lg p-6 flex flex-col gap-4 text-neutral-800 dark:text-neutral-200 opacity-0 pointer-events-none transform -translate-y-4 transition-all duration-300 ease-in-out"
   >
     <a href="/" class="font-medium">Home</a>
+    <a href="/about">About</a>
     <a href="/projects">Projects</a>
     <a href="https://hcb.hackclub.com/donations/start/hackline">Donate</a>
   </div>
@@ -51,22 +53,27 @@ import Layout from "../layouts/Layout.astro";
     class="mt-40 text-neutral-900 dark:text-neutral-100 flex flex-col justify-between"
   >
     <!-- Header -->
-    <header class="border-b border-neutral-800 py-2">
+    <header class="border-b border-neutral-800 dark:border-neutral-600 py-2">
       <div class="max-w-5xl mx-auto flex justify-between items-center ml-[10%]">
         <h1 class="text-4xl font-medium tracking-wide font-display">
-          Hi, I'm Huto
+          Hi, I'm <span class="text-teal-800 dark:text-violet-300">Huto</span>
         </h1>
       </div>
     </header>
 
     <!-- Content area -->
-    <main class="max-w-5xl ml-[10%] py-8 mr-4">
+    <main class="max-w-5xl ml-[10%] mr-[10%] py-8">
       <section id="aboutMe">
         <h1 class="font-medium text-3xl mb-4 font-display">About me</h1>
-        <p>
-          Hi! I'm Huto! I'm a 15 year old developer. I enjoy building web apps
-          and games, as well as reading sci-fi novels and playing games.
+        <p class="mb-4">
+          Hi! I'm Huto! a 15 year old software engineer. I enjoy building web
+          apps, mobile apps, and games, as well as storywriting, playing games,
+          reading novels, listening to music, and drawing.
         </p>
+        <a
+          href="/about"
+          class="text-blue-700 dark:text-blue-400 hover:underline">read more!</a
+        >
       </section>
       <section id="projects" class="mt-8">
         <h1 class="font-medium text-3xl mb-4 font-display">
@@ -74,9 +81,13 @@ import Layout from "../layouts/Layout.astro";
         </h1>
         <div
           id="project"
-          class="w-xs h-auto border-2 border-neutral-600/40 rounded-2xl sm:w-120 sm:h-60 hover:shadow-lg transition-shadow duration-300"
+          class="w-xs h-auto border-2 border-neutral-600/40 rounded-2xl sm:w-120 sm:h-60 hover:shadow-lg transition-shadow duration-300 bg-red-50 dark:bg-red-950"
         >
-          <h1 class="ml-6 mt-4 text-2xl font-bold font-display">Hack Line</h1>
+          <h1
+            class="ml-6 mt-4 text-2xl font-bold font-display text-red-950 dark:text-red-50"
+          >
+            Hack Line
+          </h1>
           <p class="ml-6 my-2 mr-4">
             Hack Line is a real, working phone network where every clubber gets
             their own extension and can call anyone else in the network —
@@ -102,7 +113,7 @@ import Layout from "../layouts/Layout.astro";
           <select
             name="contactVia"
             id="contactVia"
-            class="border-1 border-neutral-600/30 rounded-xl px-4 mr-2"
+            class="border border-neutral-600/30 rounded-xl px-4 mr-2"
             ><option disabled selected>Select</option>
             <option value="email">Email</option>
             <option value="slack">Slack (Hack Club)</option>
